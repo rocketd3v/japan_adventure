@@ -23,6 +23,6 @@ day 2 - learn and use controls
 day 3 - learn and use abilities
 day 4 - summer festivals (you scavenge the leftover food)
 day 5 - 
-day 6 -
+day 6    -
 day 7 -
 
