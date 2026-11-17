@@ -51,3 +51,6 @@ class menu():
             option_rect.centery = 250 + (i * 60)
 
             screen.blit(option_surface, option_rect)
+
+    def draw_decor(self, screen):
+        pass
