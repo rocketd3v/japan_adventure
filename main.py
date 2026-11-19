@@ -3,6 +3,7 @@ pygame.init()
 
 from scenes.menu import *
 from scenes.help import *
+from game.weather import *
 
 screen_width = 1000
 screen_height = 750
