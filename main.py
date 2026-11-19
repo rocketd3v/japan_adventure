@@ -3,7 +3,7 @@ pygame.init()
 
 from scenes.menu import *
 from scenes.help import *
-from game.weather import *
+from game.weather import leaves
 
 screen_width = 1000
 screen_height = 750
@@ -18,6 +18,7 @@ game_background = pygame.transform.scale(game_background, (screen_width, screen_
 
 menu_screen = menu()
 help_screen = help()
+leaves_inst = leaves()
 
 clock = pygame.time.Clock()
 
@@ -41,6 +42,7 @@ while run:
     if current_scene == "menu":
         screen.blit(background, (0, 0))
         menu_screen.draw_menu(screen)
+        leaves_inst.update(screen)
         if menu_option == 0:
             current_scene = "game"
         elif menu_option == 1:
