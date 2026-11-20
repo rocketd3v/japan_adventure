@@ -21,7 +21,7 @@ class leaves():
         "x": random.randint(0, screen_width),
         "y": 0,
         "speed": random.randint(1, 5),
-        "wind_effect": random.randint(1, 15),
+        "wind_effect": random.randint(1, 3),
         "image": random.choice(self.leaf_images),
         }
         return leaf
@@ -29,7 +29,8 @@ class leaves():
     def update(self, screen):
         for leaf in self.leaves:
             leaf["y"] += leaf["speed"]
-            leaf["x"] += (math.cos(leaf["wind_effect"]) + 3) # uses cosine wave + 3 for natural sway cause it goes from 4 to - 4
+            leaf["x"] += math.cos(leaf["wind_effect"]) # uses cosine wave for natural sway
+            leaf["wind_effect"] += 0.03
 
             if leaf["y"] >= screen_height or leaf["x"] >= screen_width: 
                 leaf["y"] = 0
