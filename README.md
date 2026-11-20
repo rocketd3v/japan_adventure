@@ -16,8 +16,9 @@ then you die of a disease you caught on the way
 ai usage - using asyncio and pygbag to allow playing on web
 
 # Credits
-voice acting will be done by me, as will the artwork.
+voice acting will be done by me,
 sound effects will probably be found online
+all current artwork is by me except the menu and help screens background
 
 # Themes:
 week 1: summer
@@ -29,3 +30,6 @@ day 5 -
 day 6    -
 day 7 -
 
+
+
+run: pygbag main.py to rebuild the web version
