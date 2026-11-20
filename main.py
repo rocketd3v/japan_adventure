@@ -1,4 +1,5 @@
 import pygame
+import asyncio
 pygame.init()
 
 from scenes.menu import *
@@ -26,35 +27,42 @@ run = True
 current_scene = "menu"
 menu_option = None
 
-while run:
-    dt = clock.tick(60) # game runs 60fps
+async def main():
+    global run, current_scene, menu_option
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT: # so game can quit
-            run = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                current_scene = "menu"
-                menu_option = 0
+    while run:
+        dt = clock.tick(60) # game runs 60fps
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: # so game can quit
+                run = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    current_scene = "menu"
+                    menu_option = 0
+            if current_scene == "menu":
+                menu_option = menu_screen.menu_selection(event)
+
         if current_scene == "menu":
-            menu_option = menu_screen.menu_selection(event)
+            screen.blit(background, (0, 0))
+            menu_screen.draw_menu(screen)
+            leaves_inst.update(screen)
+            if menu_option == 0:
+                current_scene = "game"
+            elif menu_option == 1:
+                current_scene = "help"
+            elif menu_option == 2:
+                current_scene = "settings"
+            elif menu_option == 3:
+                run = False
+        elif current_scene == "game":
+            screen.blit(game_background, (0, 0))
+        elif current_scene == "help":
+            screen.blit(background, (0, 0))
+            help_screen.draw_help(screen)
 
-    if current_scene == "menu":
-        screen.blit(background, (0, 0))
-        menu_screen.draw_menu(screen)
-        leaves_inst.update(screen)
-        if menu_option == 0:
-            current_scene = "game"
-        elif menu_option == 1:
-            current_scene = "help"
-        elif menu_option == 2:
-            current_scene = "settings"
-        elif menu_option == 3:
-            run = False
-    elif current_scene == "game":
-        screen.blit(game_background, (0, 0))
-    elif current_scene == "help":
-        screen.blit(background, (0, 0))
-        help_screen.draw_help(screen)
+        pygame.display.flip()
+        await asyncio.sleep(0)
 
-    pygame.display.flip()
+
+asyncio.run(main())

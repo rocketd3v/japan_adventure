@@ -13,7 +13,7 @@ and on the end of day 84, you finally reunite with the child and the parents all
 then you die of a disease you caught on the way
 
 # Ai usage
-no ai usage so far :p
+ai usage - using asyncio and pygbag to allow playing on web
 
 # Credits
 voice acting will be done by me, as will the artwork.
