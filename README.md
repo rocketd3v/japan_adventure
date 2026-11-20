@@ -12,6 +12,9 @@ so every day non-stop for 84 days you beat every level (they get harder as you g
 and on the end of day 84, you finally reunite with the child and the parents allow the child to adopt you.
 then you die of a disease you caught on the way
 
+# Ai usage
+no ai usage so far :p
+
 # Credits
 voice acting will be done by me, as will the artwork.
 sound effects will probably be found online
