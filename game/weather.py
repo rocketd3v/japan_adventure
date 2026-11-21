@@ -10,7 +10,7 @@ class leaves():
         self.leaves = []
 
         for i in os.listdir("assets/weather/leaves"):
-            image = pygame.image.load(os.path.join("assets/weather/leaves", i))
+            image = pygame.image.load(os.path.join("assets/weather/leaves", i)).convert_alpha()
             self.leaf_images.append(image)
 
         for i in range(1, 20):

@@ -1,6 +1,5 @@
 import pygame
 pygame.init()
-import os
 
 from settings import *
 
@@ -8,6 +7,7 @@ class menu():
     def __init__(self):
         self.options = ["1 Play", "2 Help", "3 Settings", "4 Quit"]
         self.option = 0
+        self.option_rects = []
 
         self.title_font = pygame.font.Font(font, 70)
         self.menu_font = pygame.font.Font(font, 40)
@@ -38,12 +38,29 @@ class menu():
             elif event.key == pygame.K_RETURN:
                 return self.option
 
+    def mouse_selection(self, event):
+        if event.type == pygame.MOUSEMOTION:
+            mouse_pos = pygame.mouse.get_pos()
+
+            for index in range(len(self.option_rects)):
+                if self.option_rects[index].collidepoint(mouse_pos):
+                    self.option = index
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                mouse_pos = pygame.mouse.get_pos()
+
+                for index in range(len(self.option_rects)):
+                    if self.option_rects[index].collidepoint(mouse_pos):
+                        return index
+                    
     def draw_menu(self, screen):
+        self.option_rects = []
         screen.blit(self.title_surface, self.title_rect)
 
         for i in range(len(self.options)):
             if i == self.option:
-                option_surface = self.menu_font.render(f"{self.options[i]}", True, white)
+                option_surface = self.menu_font.render(self.options[i], True, white)
             else:
                 option_surface = self.menu_font.render(self.options[i], True, black)
 
@@ -51,7 +68,9 @@ class menu():
             option_rect.centerx = 500
             option_rect.centery = 250 + (i * 60)
 
-            if i == self.option: # this is before text is drawn and after coords are defined so colour isnt absorbed
+            self.option_rects.append(option_rect)
+
+            if i == self.option:
                 self.draw_bars(option_rect, screen)
 
             screen.blit(option_surface, option_rect)
