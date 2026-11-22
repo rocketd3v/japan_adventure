@@ -27,18 +27,25 @@ class level_select():
                     self.selected_level -= 1
                 else:
                     self.selected_level = len(self.levels) - 1
+            elif event.key == pygame.K_RETURN:
+                return self.selected_level
 
     def mouse_select(self, event):
-        index = 0
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEMOTION:
             mouse_pos = pygame.mouse.get_pos()
 
-            for rect in self.level_rects:
-                if rect.collidepoint(mouse_pos):
+            for index in range(len(self.level_rects)):
+                if self.level_rects[index].collidepoint(mouse_pos):
                     self.selected_level = index
 
-                index += 1
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                mouse_pos = pygame.mouse.get_pos()
 
+                for index in range(len(self.level_rects)):
+                    if self.level_rects[index].collidepoint(mouse_pos):
+                        return index
+                    
     def draw(self, screen):
         screen.blit(self.background, (0, 0))
         self.level_rects = []
