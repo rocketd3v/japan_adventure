@@ -80,6 +80,10 @@ async def main():
             level_select.draw(screen)
         elif current_scene == "game":
             level.draw_level(selected_level, screen)
+            player.movement()
+            player.apply_gravity(dt)
+            player.animation(dt)
+            player.draw(screen)
         elif current_scene == "help":
             screen.blit(background, (0, 0))
             help.draw_help(screen)
