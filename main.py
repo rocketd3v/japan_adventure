@@ -7,6 +7,7 @@ from scenes.help import *
 from game.weather import *
 from game.player import *
 from scenes.level_select import *
+from game.levels import *
 
 screen_width = 1000
 screen_height = 750
@@ -25,6 +26,7 @@ leaves = leaves()
 player = player()
 level_select = level_select()
 clock = pygame.time.Clock()
+level = level()
 
 run = True
 current_scene = "menu"
@@ -54,9 +56,11 @@ async def main():
                 mouse_option = level_select.mouse_select(event)
                 if keyboard_option != None:
                     selected_level = keyboard_option
+                    current_scene = "game"
                 if mouse_option != None:
                     selected_level = mouse_option
-        
+                    current_scene = "game"
+
         if current_scene == "menu":
             screen.blit(background, (0, 0))
             menu.draw_menu(screen)
@@ -75,7 +79,7 @@ async def main():
         elif current_scene == "level_select":
             level_select.draw(screen)
         elif current_scene == "game":
-            screen.blit(game_background, (0, 0))
+            level.draw_level(selected_level, screen)
         elif current_scene == "help":
             screen.blit(background, (0, 0))
             help.draw_help(screen)
