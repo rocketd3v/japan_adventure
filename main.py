@@ -23,7 +23,7 @@ game_background = pygame.transform.scale(game_background, (screen_width, screen_
 menu = menu()
 help = help()
 leaves = leaves()
-player = player()
+# player = player()
 level_select = level_select()
 clock = pygame.time.Clock()
 level = level()
@@ -80,10 +80,10 @@ async def main():
             level_select.draw(screen)
         elif current_scene == "game":
             level.draw_level(selected_level, screen)
-            player.movement()
-            player.apply_gravity(dt)
-            player.animation(dt)
-            player.draw(screen)
+            #player.movement()
+            #player.apply_gravity(dt)
+            #player.animation(dt)
+            #player.draw(screen)
         elif current_scene == "help":
             screen.blit(background, (0, 0))
             help.draw_help(screen)

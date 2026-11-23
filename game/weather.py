@@ -35,7 +35,5 @@ class leaves():
             if leaf["y"] >= screen_height or leaf["x"] >= screen_width: 
                 leaf["y"] = 0
                 leaf["x"] = random.randint(0, screen_width)
-        
-
            
             screen.blit(leaf["image"], (leaf["x"], leaf["y"]))
