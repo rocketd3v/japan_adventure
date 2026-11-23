@@ -14,6 +14,7 @@ then you die of a disease you caught on the way
 
 # Ai usage
 ai usage - using asyncio and pygbag to allow playing on web
+game/player.py has like 20% of the code in that script done by me, i need to fix that later
 
 # Credits
 voice acting will be done by me,
