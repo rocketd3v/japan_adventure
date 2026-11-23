@@ -1,0 +1,39 @@
+
+        # Gravity
+        frame_time = dt / 16.67
+
+        self.y_velocity += self.gravity * frame_time
+        self.y += self.y_velocity * frame_time
+
+        # Landing
+        if self.y >= self.floor_y:
+            self.y = self.floor_y
+            self.y_velocity = 0
+            self.on_floor = True
+
+        # Animation
+        if moving and self.on_floor and self.walking_images:
+            self.animation_timer += dt
+
+            if self.animation_timer >= self.animation_speed:
+                self.animation_i = (
+                    self.animation_i + 1
+                ) % len(self.walking_images)
+
+                self.animation_timer -= self.animation_speed
+
+            self.image = self.walking_images[self.animation_i]
+
+        else:
+            self.image = self.idle_image
+            self.animation_i = 0
+            self.animation_timer = 0
+
+        # Flip image
+        if not self.facing_left:
+            self.image = pygame.transform.flip(
+                self.image, True, False
+            )
+
+    def draw(self, screen):
+        screen.blit(self.image, (self.x, self.y))
